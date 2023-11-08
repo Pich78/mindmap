@@ -1,0 +1,31 @@
+{
+    "id": "Titolo",
+    "children": [
+        {
+            "id": "Nodo 1"
+        },
+        {
+            "id": "Nodo 1.1",
+            "children": [
+                {
+                    "id": "Nodo 2.1"
+                },
+                {
+                    "id": "Nodo 2.1.1"
+                },
+                {
+                    "id": "Nodo 2.1.1.1"
+                }
+            ]
+        },
+        {
+            "id": "Nodo 1.1.1"
+        },
+        {
+            "id": "Nodo 1.1.1.1"
+        },
+        {
+            "id": "Nodo 2"
+        }
+    ]
+}

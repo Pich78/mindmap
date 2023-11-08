@@ -1,0 +1,11 @@
+@startmindmap
+* Titolo
+** Nodo 1
+*** Nodo 1.1
+**** Nodo 1.1.1
+***** Nodo 1.1.1.1
+** Nodo 2
+*** Nodo 2.1
+**** Nodo 2.1.1
+***** Nodo 2.1.1.1
+@endmindmap
