@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Dashed Border</title>
+  <style>
+    .box {
+      cursor: pointer;
+      position: relative;
+      width: 200px;
+      height: 100px;
+    }
+
+    .box svg {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .dash {
+      stroke-dasharray: 320;
+      stroke-dashoffset: 320;
+      animation: dash 2s linear infinite;
+      stroke: black;
+      fill: transparent;
+    }
+
+    @keyframes dash {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <svg>
+      <rect width="100%" height="100%" class="dash"></rect>
+    </svg>
+  </div>
+</body>
+
+</html>
