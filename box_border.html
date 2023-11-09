@@ -7,25 +7,28 @@
   <title>Visualizzazione Box con D3.js</title>
   <script src="https://d3js.org/d3.v6.min.js"></script>
   <style>
+    .popup {
+      margin-bottom: 10px;
+    }
+
     .box {
-      border: 2px solid black;
       border-radius: 10px;
       padding: 10px;
       cursor: pointer;
       width: 0;
       height: 0;
       visibility: hidden;
-      transition: border-color 0.3s ease; /* Aggiungi una transizione per l'effetto di cambio colore */
+      transition: border-color 0.3s ease;
     }
 
     .box:hover {
-      border-color: transparent; /* Imposta il colore del bordo trasparente quando il mouse è sopra la box */
-      animation: dash 2s linear infinite; /* Aggiungi l'animazione dash per il bordo tratteggiato */
+      border-color: transparent;
+      animation: dash 2s linear infinite;
     }
 
     @keyframes dash {
       to {
-        stroke-dashoffset: 1000; /* Imposta la lunghezza del tratteggio lungo il perimetro della box */
+        stroke-dashoffset: 1000;
       }
     }
   </style>
@@ -38,11 +41,14 @@
     <button id="submitText">Conferma</button>
   </div>
 
+  <div class="box-container"></div>
+
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const popup = d3.select('#popup');
       const inputText = document.getElementById('inputText');
       const submitTextButton = document.getElementById('submitText');
+      const boxContainer = d3.select('.box-container');
 
       submitTextButton.addEventListener('click', () => {
         const newText = inputText.value;
@@ -61,13 +67,10 @@
           tempTextElement.remove();
 
           // Crea la box dinamicamente
-          d3.select('body')
+          boxContainer
             .append('div')
             .attr('class', 'box')
             .style('border', '2px solid black')
-            .style('border-radius', '10px')
-            .style('padding', '10px')
-            .style('cursor', 'pointer')
             .style('width', boxSize.width + 'px')
             .style('height', boxSize.height + 'px')
             .text(newText);
