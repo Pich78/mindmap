@@ -31,15 +31,24 @@
           popup.style('display', 'none');
 
           // Crea la box dinamicamente
-          const newBox = d3.select('body')
+          d3.select('body')
             .append('div')
             .attr('class', 'box')
             .style('border', '1px solid black')
             .style('border-radius', '10px')
             .style('padding', '10px')
             .style('cursor', 'pointer')
-            .text(newText);
+            .text(newText)
+            .on('mouseover', function () {
+              d3.select(this).style('border-color', 'green');
+            })
+            .on('mouseout', function () {
+              d3.select(this).style('border-color', 'black');
+            });
+        }
+      });
+    });
+  </script>
+</body>
 
-          // Ottieni le dimensioni del testo e impostale come dimensioni della box
-          const boxSize = newBox.node().getBoundingClientRect();
-          new⬤
+</html>
