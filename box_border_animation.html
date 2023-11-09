@@ -10,8 +10,15 @@
       fill: lightblue;
       stroke: blue;
       stroke-width: 2;
+      stroke-dasharray: 0, 200;
+      stroke-dashoffset: 0;
       cursor: pointer;
-      transition: stroke-dasharray 0.3s ease;
+      transition: stroke-dasharray 0.3s ease, stroke-dashoffset 0.3s ease;
+    }
+
+    .box:hover {
+      stroke-dasharray: 100, 200;
+      stroke-dashoffset: -50;
     }
 
     .dashed {
@@ -43,14 +50,6 @@
     .attr('width', 200)
     .attr('height', 80)
     .attr('class', 'box');
-
-  box.on('mouseover', function() {
-    d3.select(this).classed('dashed', true);
-  });
-
-  box.on('mouseout', function() {
-    d3.select(this).classed('dashed', false);
-  });
 
   const text = svg.append('text')
     .attr('x', 150)
