@@ -14,16 +14,13 @@
       stroke-dashoffset: 0;
       cursor: pointer;
       transition: stroke-dasharray 0.3s ease, stroke-dashoffset 0.3s ease;
+      animation: rotate 2s linear infinite; /* Continuous rotation */
     }
 
     .box:hover {
-      stroke-dasharray: 100, 200;
-      stroke-dashoffset: -50;
-    }
-
-    .dashed {
       stroke-dasharray: 5, 5;
-      animation: rotate 2s linear infinite;
+      stroke-dashoffset: 0;
+      animation: none; /* Disable rotation during hover */
     }
 
     @keyframes rotate {
