@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizzazione Box con D3.js</title>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <style>
+    .box {
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .box:hover {
+      border-color: red;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border: 1px solid black;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <button id="openPopup">Apri Popup</button>
+  <div class="popup">
+    <label for="inputText">Inserisci del testo:</label>
+    <input type="text" id="inputText">
+    <button id="submitText">Conferma</button>
+  </div>
+
+  <script>
+    const box = d3.select('.box');
+    const popup = d3.select('.popup');
+    const inputText = document.getElementById('inputText');
+    const openPopupButton = document.getElementById('openPopup');
+    const submitTextButton = document.getElementById('submitText');
+
+    openPopupButton.addEventListener('click', () => {
+      popup.style('display', 'block');
+    });
+
+    submitTextButton.addEventListener('click', () => {
+      const newText = inputText.value;
+      box.text(newText);
+      const boxSize = box.node().getBoundingClientRect();
+      box.style('width', boxSize.width + 'px');
+      box.style('height', boxSize.height + 'px');
+      popup.style('display', 'none');
+    });
+
+    box.on('mouseover', () => {
+      box.style('border-color', 'green');
+    });
+
+    box.on('mouseout', () => {
+      box.style('border-color', 'black');
+    });
+  </script>
+</body>
+</html>
