@@ -30,14 +30,17 @@
           // Rimuovi il popup
           popup.style('display', 'none');
 
+          // Calcola le dimensioni del testo inserito
+          const tempTextElement = document.createElement('div');
+          tempTextElement.textContent = newText;
+          tempTextElement.style.position = 'absolute';
+          tempTextElement.style.opacity = 0;
+          document.body.appendChild(tempTextElement);
+
+          const boxSize = tempTextElement.getBoundingClientRect();
+          tempTextElement.remove();
+
           // Crea la box dinamicamente
-          const textNode = document.createElement('div');
-          textNode.textContent = newText;
-          document.body.appendChild(textNode);
-
-          const boxSize = textNode.getBBox();
-          textNode.remove();
-
           d3.select('body')
             .append('div')
             .attr('class', 'box')
