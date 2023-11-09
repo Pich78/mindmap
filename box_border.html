@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Visualizzazione Box con D3.js</title>
+  <title>Display Box with D3.js</title>
   <script src="https://d3js.org/d3.v6.min.js"></script>
   <style>
     .popup {
@@ -15,10 +15,11 @@
       border-radius: 10px;
       padding: 10px;
       cursor: pointer;
-      width: 0;
-      height: 0;
+      width: auto;
+      height: auto;
       visibility: hidden;
       transition: border-color 0.3s ease;
+      position: relative;
     }
 
     .box:hover {
@@ -36,9 +37,9 @@
 
 <body>
   <div class="popup" id="popup">
-    <label for="inputText">Inserisci del testo:</label>
+    <label for="inputText">Enter some text:</label>
     <input type="text" id="inputText">
-    <button id="submitText">Conferma</button>
+    <button id="submitText">Submit</button>
   </div>
 
   <div class="box-container"></div>
@@ -53,27 +54,25 @@
       submitTextButton.addEventListener('click', () => {
         const newText = inputText.value;
         if (newText) {
-          // Rimuovi il popup
+          // Hide the popup
           popup.style('display', 'none');
 
-          // Calcola le dimensioni del testo inserito
-          const tempTextElement = document.createElement('div');
-          tempTextElement.textContent = newText;
-          tempTextElement.style.position = 'absolute';
-          tempTextElement.style.opacity = 0;
-          document.body.appendChild(tempTextElement);
-
-          const boxSize = tempTextElement.getBoundingClientRect();
-          tempTextElement.remove();
-
-          // Crea la box dinamicamente
-          boxContainer
+          // Create the box dynamically
+          const newBox = boxContainer
             .append('div')
             .attr('class', 'box')
             .style('border', '2px solid black')
+            .text(newText)
+            .node();
+
+          // Calculate the dimensions of the box
+          const boxSize = newBox.getBoundingClientRect();
+
+          // Set the width and height of the box
+          d3.select(newBox)
             .style('width', boxSize.width + 'px')
             .style('height', boxSize.height + 'px')
-            .text(newText);
+            .style('visibility', 'visible');
         }
       });
     });
