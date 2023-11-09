@@ -7,7 +7,27 @@
   <title>Visualizzazione Box con D3.js</title>
   <script src="https://d3js.org/d3.v6.min.js"></script>
   <style>
-    /* Il tuo CSS rimane invariato */
+    .box {
+      border: 2px solid black;
+      border-radius: 10px;
+      padding: 10px;
+      cursor: pointer;
+      width: 0;
+      height: 0;
+      visibility: hidden;
+      transition: border-color 0.3s ease; /* Aggiungi una transizione per l'effetto di cambio colore */
+    }
+
+    .box:hover {
+      border-color: transparent; /* Imposta il colore del bordo trasparente quando il mouse è sopra la box */
+      animation: dash 2s linear infinite; /* Aggiungi l'animazione dash per il bordo tratteggiato */
+    }
+
+    @keyframes dash {
+      to {
+        stroke-dashoffset: 1000; /* Imposta la lunghezza del tratteggio lungo il perimetro della box */
+      }
+    }
   </style>
 </head>
 
@@ -44,19 +64,13 @@
           d3.select('body')
             .append('div')
             .attr('class', 'box')
-            .style('border', '1px solid black')
+            .style('border', '2px solid black')
             .style('border-radius', '10px')
             .style('padding', '10px')
             .style('cursor', 'pointer')
             .style('width', boxSize.width + 'px')
             .style('height', boxSize.height + 'px')
-            .text(newText)
-            .on('mouseover', function () {
-              d3.select(this).style('border-color', 'green');
-            })
-            .on('mouseout', function () {
-              d3.select(this).style('border-color', 'black');
-            });
+            .text(newText);
         }
       });
     });
