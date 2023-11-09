@@ -31,6 +31,13 @@
           popup.style('display', 'none');
 
           // Crea la box dinamicamente
+          const textNode = document.createElement('div');
+          textNode.textContent = newText;
+          document.body.appendChild(textNode);
+
+          const boxSize = textNode.getBBox();
+          textNode.remove();
+
           d3.select('body')
             .append('div')
             .attr('class', 'box')
@@ -38,6 +45,8 @@
             .style('border-radius', '10px')
             .style('padding', '10px')
             .style('cursor', 'pointer')
+            .style('width', boxSize.width + 'px')
+            .style('height', boxSize.height + 'px')
             .text(newText)
             .on('mouseover', function () {
               d3.select(this).style('border-color', 'green');
