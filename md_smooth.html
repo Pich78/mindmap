@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Design Button</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .material-button {
+            width: 200px;
+            height: 50px;
+            background-color: #2196F3;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s;
+        }
+
+        .material-ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.7);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .material-button:hover {
+            background-color: #1565C0;
+        }
+
+        .material-button:active .material-ripple {
+            animation: none;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="material-button" onclick="handleClick(event)">
+        <span>Click me!</span>
+        <span class="material-ripple"></span>
+    </button>
+
+    <script>
+        function handleClick(event) {
+            const ripple = document.createElement('span');
+            ripple.className = 'material-ripple';
+            const rect = event.currentTarget.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY⬤
