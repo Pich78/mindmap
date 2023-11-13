@@ -53,7 +53,7 @@
 </head>
 <body>
 
-<div class="material-box" onmouseover="changeColor()" onmouseout="resetColor()">
+<div class="material-box" onclick="toggleCheckbox()">
   <label class="custom-checkbox">
     <input type="checkbox" class="material-checkbox">
     <div class="checkbox-label">
@@ -63,12 +63,9 @@
 </div>
 
 <script>
-  function changeColor() {
-    document.querySelector('.material-box').style.backgroundColor = '#BDBDBD'; // Change color on hover
-  }
-
-  function resetColor() {
-    document.querySelector('.material-box').style.backgroundColor = '#e0e0e0'; // Reset color on mouseout
+  function toggleCheckbox() {
+    var checkbox = document.querySelector('.material-checkbox');
+    checkbox.checked = !checkbox.checked; // Toggle checkbox state
   }
 </script>
 
