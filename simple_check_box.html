@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .box {
+      border: 1px solid #000;
+      padding: 10px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box" onclick="toggleCheckbox()">
+  <input type="checkbox" id="myCheckbox" onclick="handleCheckboxClick(event)">
+  <label for="myCheckbox">Checkbox</label>
+</div>
+
+<script>
+  function toggleCheckbox() {
+    var checkbox = document.getElementById("myCheckbox");
+    checkbox.checked = !checkbox.checked;
+  }
+
+  function handleCheckboxClick(event) {
+    event.stopPropagation(); // Prevents the box click event from triggering
+  }
+</script>
+
+</body>
+</html>
