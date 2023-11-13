@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <style>
+    /* Box styling */
+    .material-box {
+      width: 200px;
+      height: 200px;
+      background-color: #e0e0e0; /* Default color */
+      transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Checkbox styling */
+    .material-checkbox {
+      display: none; /* Hide default checkbox */
+    }
+
+    .custom-checkbox {
+      position: relative;
+      display: inline-block;
+    }
+
+    .checkbox-label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 24px;
+      width: 24px;
+      background-color: #ffffff; /* Checkbox background color */
+      border: 2px solid #757575; /* Checkbox border color */
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .material-checkbox:checked + .custom-checkbox .checkbox-label {
+      background-color: #2196F3; /* Checked color */
+      border-color: #2196F3; /* Checked border color */
+    }
+
+    .check-icon {
+      color: #ffffff; /* Checkmark color */
+    }
+  </style>
+</head>
+<body>
+
+<div class="material-box" onmouseover="changeColor()" onmouseout="resetColor()">
+  <label class="custom-checkbox">
+    <input type="checkbox" class="material-checkbox">
+    <div class="checkbox-label">
+      <span class="material-icons check-icon">check</span>
+    </div>
+  </label>
+</div>
+
+<script>
+  function changeColor() {
+    document.querySelector('.material-box').style.backgroundColor = '#BDBDBD'; // Change color on hover
+  }
+
+  function resetColor() {
+    document.querySelector('.material-box').style.backgroundColor = '#e0e0e0'; // Reset color on mouseout
+  }
+</script>
+
+</body>
+</html>
