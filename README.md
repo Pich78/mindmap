@@ -1,5 +1,5 @@
 # mindmap
-A python script that creates a HTML file with a mind map starting from Plant UML format.
+A python script that creates a HTML file with a mind map starting from [Plant UML]:https://plantuml.com/ format.
 
 To add the ability to collapse and expand branches, I use the D3.js library
 
