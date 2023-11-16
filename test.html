@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet">
+  <style>
+    /* Box styling */
+    .material-design-box {
+        width: 100px;
+        height: 100px;
+        background-color: #e0e0e0; /* Default color */
+        transition: background-color 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .custom-checkbox input[type='checkbox'] {
+        display: none;
+        cursor: pointer;
+    }
+
+  </style>
+</head>
+
+
+<body>
+<div class="material-design-box" onmouseover="changeColor()" onmouseout="resetColor()" onclick="toggleCheckbox()">
+    <div class="box" onclick="toggleCheckbox()">
+        <input type="checkbox" id="myCheckbox" onclick="handleCheckboxClick(event)">
+        <label>Checkbox</label>
+    </div>
+</div>
+
+<script>
+  function changeColor() {
+    document.querySelector('.material-design-box').style.backgroundColor = '#BDBDBD'; // Change color on hover
+  }
+
+  function resetColor() {
+    document.querySelector('.material-design-box').style.backgroundColor = '#e0e0e0'; // Reset color on mouseout
+  }
+
+  function toggleCheckbox() {
+    var checkbox = document.getElementById("myCheckbox");
+    checkbox.checked = !checkbox.checked;
+  }
+
+  function handleCheckboxClick(event) {
+    event.stopPropagation(); // Prevents the box click event from triggering
+  }
+</script>
+
+</body>
+</html>
