@@ -1,5 +1,6 @@
 import json
 import plantuml
+import argparse
 
 def parse_mindmap(filename):
   """
@@ -86,16 +87,24 @@ def generate_html(data):
   return html
 
 def main():
-  """
-  Punto di ingresso dello script.
-  """
 
-  filename = "mindmap.puml"
-  data = parse_mindmap(filename)
-  html = generate_html(data)
+    # parsing command line
+    parser = argparse.ArgumentParser(description='PlantUML to dynamic Mind Map converter')
+    
+    parser.add_argument('-i', '--input', dest='infile', required=True, help='The input file to the script.')
+    #parse and assign to the variable
+    args = parser.parse_args()
+    infile=args.infile
 
-  with open("mindmap.html", "w") as f:
-    f.write(html)
+    print(infile)
+    
+
+    #filename = "mindmap.puml"
+    #data = parse_mindmap(filename)
+    #html = generate_html(data)
+
+    #with open("mindmap.html", "w") as f:
+    #f.write(html)
 
 if __name__ == "__main__":
   main()
