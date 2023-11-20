@@ -3,15 +3,6 @@ import plantuml
 import argparse
 
 def parse_mindmap(filename):
-  """
-  Legge un file in formato mindmap di PlantUML e ne genera una struttura dati json.
-
-  Args:
-    filename: Il nome del file da leggere.
-
-  Returns:
-    La struttura dati json della mindmap.
-  """
 
   with open(filename, "r") as f:
     data = plantuml.uml.MindMap(f.read())
@@ -32,15 +23,6 @@ def parse_mindmap(filename):
   }
 
 def generate_html(data):
-  """
-  Genera un file .html che contiene una mindmap basata sulla struttura dati json data.
-
-  Args:
-    data: La struttura dati json della mindmap.
-
-  Returns:
-    Il codice html della mindmap.
-  """
 
   html = """
   <html>
@@ -98,8 +80,6 @@ def main():
 
     print(infile)
     
-
-    #filename = "mindmap.puml"
     #data = parse_mindmap(filename)
     #html = generate_html(data)
 
