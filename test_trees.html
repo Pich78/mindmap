@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collapsible Tree with D3.js</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <style>
+    .node {
+      cursor: pointer;
+    }
+    .node text {
+      font-size: 12px;
+    }
+    .link {
+      fill: none;
+      stroke: #ccc;
+      stroke-width: 2px;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  // Sample JSON data
+  const treeData = {
+    "name": "Root",
+    "children": [
+      {
+        "name": "Child 1",
+        "children": [
+          { "name": "Child 1.1" },
+          { "name": "Child 1.2" }
+        ]
+      },
+      {
+        "name": "Child 2"
+      }
+    ]
+  };
+
+  // Set up dimensions
+  const width = 500;
+  const height = 300;
+
+  // Create tree layout
+  const tree = d3.tree().size([height, width]);
+
+  // Create SVG container
+  const svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .append("g")
+    .attr("transform", "translate(50, 20)");
+
+  // Create hierarchical data structure
+  const root = d3.hierarchy(treeData);
+  tree(root);
+
+  // Create links
+  const link = svg.selectAll(".link")
+    .data(root.links())
+    .enter().append("path")
+    .attr("class", "link")
+    .attr("d", d3.linkHorizontal()
+      .x(d => d.y)
+      .y(d => d.x)
+    );
+
+  // Create nodes
+  const node = svg.selectAll(".node")
+    .data(root.descendants())
+    .enter().append("g")
+    .attr("class", "node")
+    .attr("transform", d => `translate(${d.y},${d.x})`);
+
+  // Add circles to nodes
+  node.append("circle")
+    .attr("r", 7);
+
+  // Add text to nodes
+  node.append("text")
+    .attr("dy", 3)
+    .attr("x", d => (d.children ? -8 : 8))
+    .attr("text-anchor", d => (d.children ? "end" : "start"))
+    .text(d => d.data.name);
+
+  // Add click event to toggle children
+  node.on("click", d => {
+    if (d.children) {
+      d._children = d.children;
+      d.children = null;
+    } else {
+      d.children = d._children;
+      d._children = null;
+    }
+    update(root);
+  });
+
+  // Update function to recompute layout
+  function update(source) {
+    tree(root);
+    const nodes = root.descendants();
+    const links = root.links();
+
+    // Update links
+    link.data(links)
+      .transition()
+      .duration(500)
+      .attr("d", d3.linkHorizontal()
+        .x(d => d.y)
+        .y(d => d.x)
+      );
+
+    // Update nodes
+    node.data(nodes)
+      .transition()
+      .duration(500)
+      .attr("transform", d => `translate(${d.y},${d.x})`);
+  }
+</script>
+
+</body>
+</html>
