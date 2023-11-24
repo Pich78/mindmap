@@ -4,13 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Collapsible Tree with D3.js</title>
-  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
     .node {
       cursor: pointer;
     }
+
+    .node circle {
+      fill: #fff;
+      stroke: steelblue;
+      stroke-width: 3px;
+    }
+
     .node text {
-      font-size: 12px;
+      font: 12px sans-serif;
     }
     .link {
       fill: none;
@@ -29,22 +36,33 @@
       {
         "name": "Child 1",
         "children": [
-          { "name": "Child 1.1" },
+          {
+            "name": "Child 1.1",
+            "children": [
+              {
+                "name":"Pippo"
+              }
+            ]
+          },
           { "name": "Child 1.2" }
         ]
       },
       {
-        "name": "Child 2"
+        "name": "Child 2",
+        "children": [
+          { "name": "Child 2.1" },
+          { "name": "Child 2.2" }
+        ]
       }
     ]
   };
 
-  // Set up dimensions
-  const width = 500;
-  const height = 300;
-
-  // Create tree layout
-  const tree = d3.tree().size([height, width]);
+  // ************** Generate the tree diagram  *****************
+  var margin = {top: 20, right: 120, bottom: 20, left: 120},
+  width = 960 - margin.right - margin.left,
+  height = 500 - margin.top - margin.bottom;
+  
+  var i = 0;
 
   // Create SVG container
   const svg = d3.select("body").append("svg")
@@ -55,6 +73,7 @@
 
   // Create hierarchical data structure
   const root = d3.hierarchy(treeData);
+  var tree = d3.tree().size([height, width]);
   tree(root);
 
   // Create links
@@ -74,17 +93,21 @@
     .attr("class", "node")
     .attr("transform", d => `translate(${d.y},${d.x})`);
 
+  // Debug print of structure
+  console.log("Nodes are: "); 
+  console.log(node); 
+
   // Add circles to nodes
   node.append("circle")
-    .attr("r", 7);
+    .attr("r", 10);
 
   // Add text to nodes
   node.append("text")
-    .attr("dy", 3)
-    .attr("x", d => (d.children ? -8 : 8))
-    .attr("text-anchor", d => (d.children ? "end" : "start"))
+    .attr("y", -20)
+    .attr("x", -16)
+    .attr("text-anchor", d => ("start"))
     .text(d => d.data.name);
-
+/*
   // Add click event to toggle children
   node.on("click", d => {
     if (d.children) {
@@ -94,7 +117,7 @@
       d.children = d._children;
       d._children = null;
     }
-    update(root);
+    update(d);
   });
 
   // Update function to recompute layout
@@ -118,6 +141,7 @@
       .duration(500)
       .attr("transform", d => `translate(${d.y},${d.x})`);
   }
+  */
 </script>
 
 </body>
