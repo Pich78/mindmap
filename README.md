@@ -12,5 +12,16 @@ Example to learn to work with D3 nodes: [D3 Noob](http://www.d3noob.org/2014/01/
 [More on margins](https://gist.github.com/jsoma/71bee11bbe6b73887bca4138fd4d2442)
 
 
-python -m pip install anytree
+#### Libraries
+
+[Anytree](https://pypi.org/project/anytree/)
+
+I use this library to store the PUML file into a tree structure.
+I also use the `jsonexporter` to export the tree into a JSON file.
+
+To install:
+
+`python -m pip install anytree`
+
+
 python -m pip install json4tree
