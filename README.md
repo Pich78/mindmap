@@ -7,6 +7,9 @@ Inspiration from here: [Stack Overflow]([https://stackoverflow.com/questions/674
 
 Example to learn to work with D3 nodes: [D3 Noob](http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html)
 
+#### Interesting articles related to d3.js
+[Margin Convention](https://observablehq.com/@d3/margin-convention)
+
 
 python -m pip install anytree
 python -m pip install json4tree
