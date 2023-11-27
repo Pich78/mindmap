@@ -23,10 +23,3 @@ To install:
 
 `python -m pip install anytree`
 
-[json4tree](https://pypi.org/project/json4tree/)
-
-I use this library to transform a JSON into a D3 hierarchy JSON.
-
-To install:
-
-`python -m pip install json4tree`
