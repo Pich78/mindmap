@@ -16,11 +16,11 @@ def puml_to_json(puml_file_content):
                 else:
                     this_node = AnyNode(id=node_name, parent=parent_node[node_level-2])
                     parent_node.insert(node_level-1,this_node)  # This is the last node seen at this level
-                    
 
-    exporter = JsonExporter(indent=2, sort_keys=True)
-    return exporter.export(root)
+    exporter = JsonExporter(indent=2)
     #print(RenderTree(root))
+    return exporter.export(root)
+    
 
 
 
