@@ -11,10 +11,10 @@ def puml_to_json(puml_file_content):
                 node_name = line.strip('* ').strip()
 
                 if node_level == 1:                        
-                    root = AnyNode(id=node_name)
+                    root = AnyNode(name=node_name)
                     parent_node.insert(0,root)
                 else:
-                    this_node = AnyNode(id=node_name, parent=parent_node[node_level-2])
+                    this_node = AnyNode(name=node_name, parent=parent_node[node_level-2])
                     parent_node.insert(node_level-1,this_node)  # This is the last node seen at this level
 
     exporter = JsonExporter(indent=2)
