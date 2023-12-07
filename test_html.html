@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mindmap</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    .node {
+      cursor: pointer;
+    }
+
+    .node circle {
+      fill: #fff;
+      stroke: steelblue;
+      stroke-width: 3px;
+    }
+
+    .node text {
+      font: 12px sans-serif;
+    }
+    .link {
+      fill: none;
+      stroke: #ccc;
+      stroke-width: 2px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <script>
+    // Sample JSON data
+    const treeData = {
+    "id": "Titolo",
+    "children": [
+        {
+            "id": "Nodo 1"
+        },
+        {
+            "id": "Nodo 1.1",
+            "children": [
+                {
+                    "id": "Nodo 2.1"
+                },
+                {
+                    "id": "Nodo 2.1.1"
+                },
+                {
+                    "id": "Nodo 2.1.1.1"
+                }
+            ]
+        },
+        {
+            "id": "Nodo 1.1.1"
+        },
+        {
+            "id": "Nodo 1.1.1.1"
+        },
+        {
+            "id": "Nodo 2"
+        }
+    ]
+};
+  // ************** Generate the tree diagram  *****************
+  var margin = {top: 20, right: 50, bottom: 20, left: 50},
+  width = 960 - margin.right - margin.left,
+  height = 500 - margin.top - margin.bottom;
+  
+  var i = 0;
+
+  // Create SVG container
+  const svg = d3.select("body").append("svg")
+    .attr("width", width + margin.right + margin.left)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", `translate(${margin.left},${margin.top})`);
+
+  // Create hierarchical data structure
+  const root = d3.hierarchy(treeData);
+  var tree = d3.tree().size([height, width]);
+  tree(root);
+
+  // Create links
+  const link = svg.selectAll(".link")
+    .data(root.links())
+    .enter().append("path")
+    .attr("class", "link")
+    .attr("d", d3.linkHorizontal()
+      .x(d => d.y)
+      .y(d => d.x)
+    );
+
+  // Create nodes
+  const node = svg.selectAll(".node")
+    .data(root.descendants())
+    .enter().append("g")
+    .attr("class", "node")
+    .attr("transform", d => `translate(${d.y},${d.x})`);
+
+  // Debug print of structure
+  console.log("Nodes are: "); 
+  console.log(node); 
+
+  // Add circles to nodes
+  node.append("circle")
+    .attr("r", 10);
+
+  // Add text to nodes
+  node.append("text")
+    .attr("y", -20)
+    .attr("x", -16)
+    .attr("text-anchor", d => ("start"))
+    .text(d => d.data.name);
+
+  </script>
+
+</body>
+
+</html>
+    
