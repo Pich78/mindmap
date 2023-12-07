@@ -1,9 +1,9 @@
+import json
+
 def generate_html_encapsulation(data):
     html = """<!DOCTYPE html>
 <html lang="en">
-
 {}
-
 </html>
     """.format(data)
     return html
@@ -41,13 +41,32 @@ def generate_head(title, script_url):
 '''
     return head
 
+def generate_body(json_content):
+    body = f"""
+<body>
+
+  <script>
+    // Sample JSON data
+    const treeData = {json_content};
+
+  </script>
+
+</body>
+"""
+    return body
+
 
 def main():
     filename = "test_html.html"
 
     with open(filename, "w") as f:
         head_data = generate_head("Mindmap", "https://d3js.org/d3.v7.min.js")
-        data = generate_html_encapsulation(head_data)
+
+        with open('mindmap.json', 'r') as file:
+            json_data = json.load(file)
+        json_formatted_data = json.dumps(json_data, indent=4)
+        body_data = generate_body(json_formatted_data)
+        data = generate_html_encapsulation(head_data+body_data)
         f.write(data)
 
 
