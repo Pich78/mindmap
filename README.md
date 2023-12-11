@@ -3,7 +3,15 @@ A python script that creates a HTML file with a mind map starting from [Plant UM
 
 To add the ability to collapse and expand branches, I use the D3.js library
 
-Inspiration from here: [Stack Overflow](https://stackoverflow.com/questions/60107431/d3-tree-with-collapsing-boxes-using-d3-version-4)
+## Usage
+
+python mindmap.py -i <input file in plant uml mind map format>
+
+## Inspiration:
+
+[Stack Overflow](https://stackoverflow.com/questions/60107431/d3-tree-with-collapsing-boxes-using-d3-version-4)
+
+## d3js resources:
 
 Example to learn to work with D3 nodes: [D3 Noob](http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html)
 
@@ -12,7 +20,7 @@ Example to learn to work with D3 nodes: [D3 Noob](http://www.d3noob.org/2014/01/
 [More on margins](https://gist.github.com/jsoma/71bee11bbe6b73887bca4138fd4d2442)
 
 
-#### Libraries
+## Libraries
 
 [Anytree](https://pypi.org/project/anytree/)
 
