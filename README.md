@@ -5,7 +5,7 @@ To add the ability to collapse and expand branches, I use the D3.js library
 
 ## Usage
 
-python mindmap.py -i <input file in plant uml mind map format>
+`python mindmap.py -i <input file in plant uml mind map format>`
 
 ## Inspiration:
 
