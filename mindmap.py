@@ -10,6 +10,7 @@ def main():
     
     parser.add_argument('-i', '--input', dest='infile', required=True, help='The input PUML file to be converted by the script.')
     parser.add_argument('-o', '--output', dest='outfile', required=False, help='The output HTML with the mindmap.')
+    parser.add_argument('-d', '--data', dest='json_data_file', required=False, help='Data JSON file to use in the embedded version of the program.')
     #parse and assign to the variable
     args = parser.parse_args()
 
@@ -17,6 +18,11 @@ def main():
       root, ext = os.path.splitext(args.infile)      
     else:
       root, ext = os.path.splitext(args.outfile)
+
+    if args.json_data_file:
+       embedded = True
+    else:
+       embedded = False
 
     output_file_name = root + ".html"
 
