@@ -1,23 +1,35 @@
 import json
 import argparse
 from html_generator import *
+import os
 
 def main():
 
     # parsing command line
     parser = argparse.ArgumentParser(description='PlantUML to dynamic Mind Map converter')
     
-    parser.add_argument('-i', '--input', dest='infile', required=True, help='The input file to the script.')
+    parser.add_argument('-i', '--input', dest='infile', required=True, help='The input PUML file to be converted by the script.')
+    parser.add_argument('-o', '--output', dest='outfile', required=False, help='The output HTML with the mindmap.')
+    parser.add_argument('-d', '--data', dest='json_data_file', required=False, help='Data JSON file to use in the embedded version of the program.')
     #parse and assign to the variable
     args = parser.parse_args()
-    infile=args.infile
 
-    output_file_name = "test_html.html"
+    if not args.outfile:        
+      root, ext = os.path.splitext(args.infile)      
+    else:
+      root, ext = os.path.splitext(args.outfile)
+
+    if args.json_data_file:
+       embedded = True
+    else:
+       embedded = False
+
+    output_file_name = root + ".html"
 
     with open(output_file_name, "w") as output_file:
         head_data = generate_head("Mindmap", "https://d3js.org/d3.v7.min.js")
 
-        source_file_name = infile
+        source_file_name = args.infile
         with open(source_file_name, "r") as source_file:
           data = source_file.read()
           json = puml_to_json(data)
