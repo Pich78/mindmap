@@ -20,7 +20,7 @@ Example to learn to work with D3 nodes: [D3 Noob](http://www.d3noob.org/2014/01/
 #### Interesting articles related to d3.js
 [Margin Convention](https://observablehq.com/@d3/margin-convention)
 [More on margins](https://gist.github.com/jsoma/71bee11bbe6b73887bca4138fd4d2442)
-
+[Enter, update, exit introduction](https://medium.com/@c_behrens/enter-update-exit-6cafc6014c36)
 
 ## Libraries
 
