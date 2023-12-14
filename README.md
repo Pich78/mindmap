@@ -1,7 +1,7 @@
 # mindmap
 A python script that creates a HTML file with a mind map starting from [Plant UML mindmap](https://plantuml.com/mindmap-diagram) format.
 
-To add the ability to collapse and expand branches, I use the D3.js library
+To add the ability to collapse and expand branches, I use the [D3.js](https://d3js.org/) library
 
 ## Usage
 
