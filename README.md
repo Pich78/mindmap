@@ -17,6 +17,8 @@ If the output file name is missing, the generated .html file will be `input_file
 
 ## D3js resources:
 
+[D2 in Depth](https://www.d3indepth.com/)
+
 Example to learn to work with D3 nodes: [D3 Noob](http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html)
 
 [Collapsible trees](https://observablehq.com/@d3/collapsible-tree)
