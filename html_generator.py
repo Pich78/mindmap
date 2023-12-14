@@ -96,7 +96,10 @@ def generate_body(json_content):
   console.log(node); 
 
   // Add rectangles to nodes
+  // The box position shift shall be half of the size
   node.append("rect")
+    .attr("x", -20)
+    .attr("y", -10)
     .attr("width", 40)
     .attr("height", 20);
 
