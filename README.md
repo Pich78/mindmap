@@ -19,6 +19,8 @@ If the output file name is missing, the generated .html file will be `input_file
 
 Example to learn to work with D3 nodes: [D3 Noob](http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html)
 
+[Collapsible trees](https://observablehq.com/@d3/collapsible-tree)
+
 #### Interesting articles related to d3.js
 
 [Margin Convention](https://observablehq.com/@d3/margin-convention)
