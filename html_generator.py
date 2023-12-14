@@ -29,6 +29,12 @@ def generate_head(title, script_url):
       stroke-width: 3px;
     }}
 
+    .node rect {{
+      fill: #fff;
+      stroke: steelblue;
+      stroke-width: 3px;
+    }}
+
     .node text {{
       font: 12px sans-serif;
     }}
@@ -43,14 +49,14 @@ def generate_head(title, script_url):
     return head
 
 def generate_body(json_content):
-    body = f"""
+    body = f'''
 <body>
 
   <script>
     // Sample JSON data
     const treeData = {json_content};
   // ************** Generate the tree diagram  *****************
-  var margin = {{top: 20, right: 50, bottom: 20, left: 50}},
+  var margin = {{top: 20, right: 100, bottom: 20, left: 50}},
   width = 960 - margin.right - margin.left,
   height = 500 - margin.top - margin.bottom;
   
@@ -89,22 +95,27 @@ def generate_body(json_content):
   console.log("Nodes are: "); 
   console.log(node); 
 
-  // Add circles to nodes
-  node.append("circle")
-    .attr("r", 10);
-
   // Add text to nodes
-  node.append("text")
-    .attr("y", -20)
-    .attr("x", -16)
+  const text = node.append("text")
+    .attr("y", 4)
+    .attr("x", -10)
     .attr("text-anchor", d => ("start"))
     .text(d => d.data.name);
+
+  // Add rectangles to nodes
+  // The box position shift shall be half of the size
+  node.insert("rect", "text")
+    .attr("x", -20)
+    .attr("y", -10)
+    .attr("width", d => text.filter(t => t === d).node().getComputedTextLength() + 20)
+    .attr("height", 20);
 
   </script>
 
 </body>
-"""
+'''
     return body
+
 
 
 def main():
