@@ -29,6 +29,12 @@ def generate_head(title, script_url):
       stroke-width: 3px;
     }}
 
+    .node rect {{
+      fill: #fff;
+      stroke: steelblue;
+      stroke-width: 3px;
+    }}
+
     .node text {{
       font: 12px sans-serif;
     }}
@@ -89,9 +95,10 @@ def generate_body(json_content):
   console.log("Nodes are: "); 
   console.log(node); 
 
-  // Add circles to nodes
-  node.append("circle")
-    .attr("r", 10);
+  // Add rectangles to nodes
+  node.append("rect")
+    .attr("width", 40)
+    .attr("height", 20);
 
   // Add text to nodes
   node.append("text")
