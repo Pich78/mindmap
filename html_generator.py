@@ -49,7 +49,7 @@ def generate_head(title, script_url):
     return head
 
 def generate_body(json_content):
-    body = f"""
+    body = f'''
 <body>
 
   <script>
@@ -95,26 +95,27 @@ def generate_body(json_content):
   console.log("Nodes are: "); 
   console.log(node); 
 
-  // Add rectangles to nodes
-  // The box position shift shall be half of the size
-  node.append("rect")
-    .attr("x", -20)
-    .attr("y", -10)
-    .attr("width", 40)
-    .attr("height", 20);
-
   // Add text to nodes
-  node.append("text")
+  const text = node.append("text")
     .attr("y", -20)
     .attr("x", -16)
     .attr("text-anchor", d => ("start"))
     .text(d => d.data.name);
 
+  // Add rectangles to nodes
+  // The box position shift shall be half of the size
+  node.insert("rect", "text")
+    .attr("x", d => -text.filter(t => t === d).node().getComputedTextLength() / 2)
+    .attr("y", -10)
+    .attr("width", d => text.filter(t => t === d).node().getComputedTextLength())
+    .attr("height", 20);
+
   </script>
 
 </body>
-"""
+'''
     return body
+
 
 
 def main():
