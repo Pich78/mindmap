@@ -1,7 +1,7 @@
 # mindmap
 A python script that creates a HTML file with a mind map starting from [Plant UML mindmap](https://plantuml.com/mindmap-diagram) format.
 
-To add the ability to collapse and expand branches, I use the [D3.js](https://d3js.org/) library
+To add the ability to collapse and expand branches, I use the [D3.js](https://d3js.org/) library.
 
 ## Usage
 
@@ -13,7 +13,9 @@ If the output file name is missing, the generated .html file will be `input_file
 
 [Stack Overflow](https://stackoverflow.com/questions/60107431/d3-tree-with-collapsing-boxes-using-d3-version-4)
 
-## d3js resources:
+[Other example](https://sail.usc.edu/~mica/ccmi-overview)
+
+## D3js resources:
 
 Example to learn to work with D3 nodes: [D3 Noob](http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html)
 
