@@ -97,17 +97,17 @@ def generate_body(json_content):
 
   // Add text to nodes
   const text = node.append("text")
-    .attr("y", -20)
-    .attr("x", -16)
+    .attr("y", 4)
+    .attr("x", -10)
     .attr("text-anchor", d => ("start"))
     .text(d => d.data.name);
 
   // Add rectangles to nodes
   // The box position shift shall be half of the size
   node.insert("rect", "text")
-    .attr("x", d => -text.filter(t => t === d).node().getComputedTextLength() / 2)
+    .attr("x", -20)
     .attr("y", -10)
-    .attr("width", d => text.filter(t => t === d).node().getComputedTextLength())
+    .attr("width", d => text.filter(t => t === d).node().getComputedTextLength() + 20)
     .attr("height", 20);
 
   </script>
